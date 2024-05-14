@@ -55,7 +55,7 @@ const SignUp = () => {
       </Form>
       <LinkContainer>
         이미 회원이신가요?&nbsp;
-        <a>로그인 하러가기</a>
+        <a href="/login">로그인 하러가기</a>
       </LinkContainer>
     </div>
   );
