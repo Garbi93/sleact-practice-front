@@ -97,12 +97,10 @@ export const LinkContainer = styled.p`
   margin: 0 auto 8px;
   width: 400px;
   max-width: 400px;
-
   & a {
     color: #1264a3;
     text-decoration: none;
     font-weight: 700;
-
     &:hover {
       text-decoration: underline;
     }
