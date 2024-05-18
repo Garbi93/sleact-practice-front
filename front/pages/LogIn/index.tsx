@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import useInput from '@hooks/useInput';
 import axios from 'axios';
 import { Form, Success, Error, Header, Input, Label, LinkContainer, Button } from '@pages/SignUp/style';
@@ -19,8 +19,8 @@ const LogIn = () => {
       setLogInError(false);
       axios
         .post('http://localhost:3095/api/users/login', { email, password }, { withCredentials: true })
-        .then(() => {
-          mutate();
+        .then((response) => {
+          mutate(response.data);
         })
         .catch((error) => {
           setLogInError(error.response?.data.statusCode === 401);
@@ -29,9 +29,11 @@ const LogIn = () => {
     [email, password],
   );
 
+  if (data === undefined) {
+    return <div>로딩중...</div>;
+  }
+
   if (data) {
-    console.log('data');
-    console.log(data);
     return <Redirect to={'/workspace/channel'} />;
   }
 
