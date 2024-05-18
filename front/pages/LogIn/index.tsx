@@ -5,11 +5,10 @@ import { Form, Success, Error, Header, Input, Label, LinkContainer, Button } fro
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
+import { Redirect } from 'react-router';
 
 const LogIn = () => {
-  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
-    dedupingInterval: 100000,
-  });
+  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
@@ -29,6 +28,12 @@ const LogIn = () => {
     },
     [email, password],
   );
+
+  if (data) {
+    console.log('data');
+    console.log(data);
+    return <Redirect to={'/workspace/channel'} />;
+  }
 
   // console.log(error, userData);
   // if (!error && userData) {
