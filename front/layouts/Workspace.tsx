@@ -5,16 +5,17 @@ import axios from 'axios';
 import { Redirect } from 'react-router';
 
 const Workspace: FC = ({ children }) => {
-  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher, {
+    dedupingInterval: 10000,
+  });
 
   const onLogout = useCallback(() => {
     axios
       .post('http://localhost:3095/api/users/logout', null, {
         withCredentials: true,
       })
-      .then((response) => {
-        console.log('로그아웃 성공, 응답:', response.data);
-        mutate(response.data);
+      .then(() => {
+        mutate(false, false);
       });
   }, []);
 
