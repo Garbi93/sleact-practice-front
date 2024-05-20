@@ -8,7 +8,7 @@ import fetcher from '@utils/fetcher';
 import { Redirect } from 'react-router';
 
 const LogIn = () => {
-  const { data, error, mutate } = useSWR('http://localhost:3095/api/users', fetcher);
+  const { data, error, mutate } = useSWR('/api/users', fetcher);
   const [logInError, setLogInError] = useState(false);
   const [email, onChangeEmail] = useInput('');
   const [password, onChangePassword] = useInput('');
@@ -18,7 +18,7 @@ const LogIn = () => {
       e.preventDefault();
       setLogInError(false);
       axios
-        .post('http://localhost:3095/api/users/login', { email, password }, { withCredentials: true })
+        .post('/api/users/login', { email, password }, { withCredentials: true })
         .then((response) => {
           mutate(response.data, false); // OPTIMISTIC UI -> 내가 보내는 요청이 성공 할 것 이라고 예상하고 보내는 행위 (선동작 후 디비 점검) // 하고 싶으면 이 옵션은 true 로 바꿔주면 된다.
         })
