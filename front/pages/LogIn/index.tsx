@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import useInput from '@hooks/useInput';
 import axios from 'axios';
-import { Form, Success, Error, Header, Input, Label, LinkContainer, Button } from '@pages/SignUp/style';
+import { Form, Success, Error, Header, Input, Label, LinkContainer, Button } from '@pages/SignUp/styles';
 import { Link } from 'react-router-dom';
 import useSWR from 'swr';
 import fetcher from '@utils/fetcher';
