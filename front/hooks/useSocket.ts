@@ -4,7 +4,8 @@ import { useCallback } from 'react';
 const backUrl = 'http://localhost:3095';
 
 const sockets: { [key: string]: SocketIOClient.Socket } = {};
-const useSocket = (workspace?: string) => {
+const useSocket = (workspace?: string): [SocketIOClient.Socket | undefined, () => void] => {
+  console.log('rerender', workspace);
   const disconnect = useCallback(() => {
     if (workspace) {
       sockets[workspace].disconnect();
@@ -16,7 +17,11 @@ const useSocket = (workspace?: string) => {
     return [undefined, disconnect];
   }
 
-  sockets[workspace] = io.connect(`${backUrl}/ws-${workspace}`);
+  if (!sockets[workspace]) {
+    sockets[workspace] = io.connect(`${backUrl}/ws-${workspace}`, {
+      transports: ['websocket'],
+    });
+  }
 
   // sockets[workspace].emit('hello', 'world');
   // sockets[workspace].on('message', (data) => {
