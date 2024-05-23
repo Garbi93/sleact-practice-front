@@ -19,8 +19,8 @@ const LogIn = () => {
       setLogInError(false);
       axios
         .post('/api/users/login', { email, password }, { withCredentials: true })
-        .then((response) => {
-          mutate(response.data, false); // OPTIMISTIC UI -> 내가 보내는 요청이 성공 할 것 이라고 예상하고 보내는 행위 (선동작 후 디비 점검) // 하고 싶으면 이 옵션은 true 로 바꿔주면 된다.
+        .then(() => {
+          mutate(); // OPTIMISTIC UI -> 내가 보내는 요청이 성공 할 것 이라고 예상하고 보내는 행위 (선동작 후 디비 점검) // 하고 싶으면 이 옵션은 true 로 바꿔주면 된다.
         })
         .catch((error) => {
           setLogInError(error.response?.data.statusCode === 401);

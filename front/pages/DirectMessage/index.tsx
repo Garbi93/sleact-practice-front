@@ -31,8 +31,8 @@ const DirectMessage = () => {
           .post(`/api/workspaces/${workspace}/dms/${id}/chats`, {
             content: chat,
           })
-          .then((response) => {
-            mutateChat(response.data);
+          .then(() => {
+            mutateChat();
             setChat('');
           })
           .catch(console.error);
