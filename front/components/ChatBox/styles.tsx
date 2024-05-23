@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-// import { MentionsInput } from 'react-mentions';
+import { MentionsInput } from 'react-mentions';
 
 export const ChatArea = styled.div`
   display: flex;
@@ -16,18 +16,18 @@ export const Form = styled.form`
   border: 1px solid rgb(29, 28, 29);
 `;
 
-export const MentionsTextarea = styled.textarea`
+export const MentionsTextarea = styled(MentionsInput)`
   font-family: Slack-Lato, appleLogo, sans-serif;
   font-size: 15px;
   padding: 8px 9px;
   width: 100%;
-  height: auto; /* autosize를 위해 height를 auto로 설정 */
-  overflow: hidden; /* textarea의 크기를 조절할 때 스크롤이 발생하지 않도록 */
-  resize: none; /* 사용자가 크기를 조절하지 못하도록 */
-  border: none;
-  outline: none;
-  line-height: 22px;
-  border-radius: 4px;
+  //height: auto; /* autosize를 위해 height를 auto로 설정 */
+  //overflow: hidden; /* textarea의 크기를 조절할 때 스크롤이 발생하지 않도록 */
+  //resize: none; /* 사용자가 크기를 조절하지 못하도록 */
+  //border: none;
+  //outline: none;
+  //line-height: 22px;
+  //border-radius: 4px;
   & strong {
     background: skyblue;
   }
